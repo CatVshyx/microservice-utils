@@ -38,7 +38,7 @@ public class JwtUtils {
         return extractClaim(token,Claims::getExpiration, signature);
     }
 
-    private Object  extractExtraClaims(String token, String key, SIGNATURE_TYPE signature) {
+    public Object  extractExtraClaims(String token, String key, SIGNATURE_TYPE signature) {
         Claims s = extractAllClaims(token,signature);
         return extractAllClaims(token,signature).get(key);
     }
