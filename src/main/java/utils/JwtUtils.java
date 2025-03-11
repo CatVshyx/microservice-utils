@@ -43,7 +43,7 @@ public class JwtUtils {
         return extractAllClaims(token,signature).get(key);
     }
 
-    private Claims extractAllClaims(String token, SIGNATURE_TYPE signature) throws ExpiredJwtException {
+    public Claims extractAllClaims(String token, SIGNATURE_TYPE signature) throws ExpiredJwtException {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignKey(signature == SIGNATURE_TYPE.GLOBAL_KEY ? GLOBAL_KEY: ACCESS_KEY))
                 .build().parseClaimsJws(token)
