@@ -81,7 +81,7 @@ public class JwtUtils {
         byte[] keyBytes = key.getBytes();
         return Keys.hmacShaKeyFor(keyBytes);
     }
-    private static String excludeToken(String token){
+    public static String excludeToken(String token){
         return token != null && token.startsWith("Bearer ")
                 ? token.substring(7)
                 : token;
@@ -93,5 +93,4 @@ public class JwtUtils {
         }
         return this.isTokenValid(token, SIGNATURE_TYPE.GLOBAL_KEY);
     }
-
 }
