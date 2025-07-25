@@ -58,10 +58,10 @@ public class JwtUtils {
         return extractExpiration(token,signature).before(new Date());
     }
 
-    public String generateToken(Map<String,Object> extraClaims, int exp, SIGNATURE_TYPE sign){
+    public String generateToken(Map<String,Object> extraClaims, int minutes, SIGNATURE_TYPE sign){
         return Jwts.builder().addClaims(extraClaims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60  * exp))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * minutes))
                 .signWith(getSignKey(sign == SIGNATURE_TYPE.GLOBAL_KEY ? GLOBAL_KEY : ACCESS_KEY ), SignatureAlgorithm.HS256)
                 .compact();
     }
